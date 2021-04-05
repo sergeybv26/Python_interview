@@ -11,6 +11,7 @@ if __name__ == '__main__':
             for k in range(1, b + 1):
                 table_list.append(f'{i} * {k} = {i * k}')
 
-        print(table_list)
+        table_str = str(map(lambda el: el + '\t', table_list))
+        return table_str
 
-    multiplication_table(2, 9)
+    print(multiplication_table(2, 9))
