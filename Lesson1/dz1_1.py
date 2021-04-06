@@ -1,4 +1,6 @@
 if __name__ == '__main__':
+    from functools import reduce
+
     def multiplication_table(a, b):
         """
         :param a: первый множитель таблицы умножения
@@ -11,7 +13,7 @@ if __name__ == '__main__':
             for k in range(1, b + 1):
                 table_list.append(f'{i} * {k} = {i * k}')
 
-        table_str = str(map(lambda el: el + '\t', table_list))
+        table_str = reduce(lambda el1, el2: el1 + '\t' + el2, table_list)
         return table_str
 
     print(multiplication_table(2, 9))
