@@ -1,0 +1,10 @@
+Dn 7
+Za 6
+Le -1
+If -5
+Lq 6
+Wf 0
+Wn 0
+Ee -6
+Ym 7
+Uv 6
