@@ -14,10 +14,10 @@ if __name__ == '__main__':
         digit_list = [str(random.randint(-10, 10)) for _ in range(10)]
         str_list = [(chr(random.randint(65, 90)) + chr(random.randint(97, 122))) for _ in range(10)]
 
-        for i in range(0, len(str_list), 3):
-            str_list[i] = 'exmpl123'
+        zipped_str = list(zip(str_list, digit_list))
 
-        zipped_str = zip(str_list, digit_list)
+        for i in range(0, len(zipped_str), 3):
+            zipped_str[i] = ('exmpl123',)
 
         try:
             with open(file_name, 'x', encoding='UTF-8') as f:
@@ -37,15 +37,32 @@ if __name__ == '__main__':
         :return:
         """
         count = 0
-        with open(file, 'a+', encoding='UTF-8') as f:
+        with open(file, 'r', encoding='UTF-8') as f:
+            file_dump = f.read()
+
+        file_list = file_dump.split('\n')
+        for line in file_list:
+            count += 1
+            if re.match('^exmpl123', line):
+                print(f'Первое вхождение найдено в строке № {count}: {line}')
+                break
+        count = 0
+        entry_list = []
+        for line in file_list:
+            count += 1
+            if re.match('^exmpl123', line):
+                entry_list.append(str(count))
+                file_list[count - 1] = ' new987 '
+        print(f'Вхождения найдены в строках: {", ".join(entry_list)}')
+
+        with open(file, 'w', encoding='UTF-8') as f:
+            for el in  file_list:
+                f.write(''.join(el) + '\n')
+
+        with open(file, 'r', encoding='UTF-8') as f:
             for line in f:
-                if re.match('^exmpl123', line) and count == 0:
-                    print(f'Первое вхождение найдено в строке: {line}', end='')
-
-                print(f'Вхождения найдены в строках: {line}', end='')
-                count += 1
-                f.write('new_str')
-
+                if re.match('^\s?\w+\s?\n$', line):
+                    print(line, end='')
         return None
 
     file_operation('dz3_5.txt')
