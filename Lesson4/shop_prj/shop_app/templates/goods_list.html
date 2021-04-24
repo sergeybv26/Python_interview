@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Все товары</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Все товары{% endblock %}
+
+{% block content %}
     <h1>{{ page_header }}</h1>
+    <button>Добавить товар</button>
     <table>
         <tr>
             <th>Наименование</th>
@@ -21,5 +21,8 @@
         {% endfor %}
     </table>
 
-</body>
-</html>
+{% endblock %}
+
+{% block additional_js %}
+    <script src="{% static 'test.js' %}"></script>
+{% endblock %}
